@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Heater Control System – Working DHT22",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 57.9,
+      "left": 455.4,
+      "attrs": { "temperature": "29.1", "humidity": "61" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_pullup",
+      "top": -72,
+      "left": 316.25,
+      "rotate": 90,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 198,
+      "left": 387.8,
+      "attrs": { "color": "red", "label": "Heater LED" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_led",
+      "top": 301.55,
+      "left": 384,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzz1",
+      "top": 338.4,
+      "left": 309,
+      "attrs": { "label": "Overheat Buzzer" }
+    }
+  ],
+  "connections": [
+    ["dht1:VCC", "uno:5V", "red", []],
+    ["dht1:GND", "uno:GND.1", "black", []],
+    ["dht1:DATA", "uno:2", "green", []],
+    ["r_pullup:1", "dht1:DATA", "green", []],
+    ["r_pullup:2", "uno:5V", "red", []],
+    ["led1:A", "uno:8", "green", []],
+    ["led1:K", "r_led:1", "black", []],
+    ["r_led:2", "uno:GND.2", "black", []],
+    ["buzz1:1", "uno:9", "green", []],
+    ["buzz1:2", "uno:GND.3", "black", []],
+    ["r_pullup:1", "dht1:SDA", "green", ["h0"]],
+    ["r_led:1", "led1:C", "green", ["v0"]]
+  ],
+  "dependencies": {}
+}
